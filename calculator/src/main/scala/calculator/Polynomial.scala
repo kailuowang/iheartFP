@@ -13,7 +13,11 @@ object Polynomial {
       c: Signal[Double], delta: Signal[Double]): Signal[Set[Double]] = {
     Signal {
       val ds = Math.sqrt(delta())
-      Set((ds - b()) / (2* a()), (- ds - b()) / (2 * a()))
+      if(ds > 0) {
+        Set((ds - b()) / (2* a()), (- ds - b()) / (2 * a()))
+      }else {
+        Set.empty[Double]
+      }
     }
   }
 }
